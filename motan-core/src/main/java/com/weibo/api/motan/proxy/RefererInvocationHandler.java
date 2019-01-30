@@ -61,6 +61,7 @@ public class RefererInvocationHandler<T> extends AbstractRefererHandler<T> imple
         request.setArguments(args);
         String methodName = method.getName();
         boolean async = false;
+        // 服务方法为异步的
         if (methodName.endsWith(MotanConstants.ASYNC_SUFFIX) && method.getReturnType().equals(ResponseFuture.class)) {
             methodName = MotanFrameworkUtil.removeAsyncSuffix(methodName);
             async = true;
@@ -81,6 +82,8 @@ public class RefererInvocationHandler<T> extends AbstractRefererHandler<T> imple
     public boolean isLocalMethod(Method method) {
         if (method.getDeclaringClass().equals(Object.class)) {
             try {
+                // 不包括继承的方法
+                // getMethods - 返回所有方法，包括父类
                 Method interfaceMethod = clz.getDeclaredMethod(method.getName(), method.getParameterTypes());
                 return false;
             } catch (Exception e) {

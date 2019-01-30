@@ -5,6 +5,7 @@ import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.codec.MessageToByteEncoder;
 
 /**
+ * 自定义序列化方式 扩展
  * @author sunnights
  */
 public class NettyEncoder extends MessageToByteEncoder<byte[]> {

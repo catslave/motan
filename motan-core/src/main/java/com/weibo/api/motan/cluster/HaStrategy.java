@@ -25,11 +25,12 @@ import com.weibo.api.motan.rpc.URL;
 /**
  * 
  * Ha strategy.
+ * 集群高可用策略
  *
  * @author fishermen
  * @version V1.0 created at: 2013-5-21
  */
-@Spi(scope = Scope.PROTOTYPE)
+@Spi(scope = Scope.PROTOTYPE) // 每次请求都会创建一个实例（从ioc容器获取bean都是一个新的实例，适用于有状态的bean）
 public interface HaStrategy<T> {
 
     void setUrl(URL url);

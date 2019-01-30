@@ -15,6 +15,7 @@ import io.netty.handler.codec.ByteToMessageDecoder;
 import java.util.List;
 
 /**
+ * 自定义序列化方式 扩展
  * @author sunnights
  */
 public class NettyDecoder extends ByteToMessageDecoder {
@@ -28,6 +29,13 @@ public class NettyDecoder extends ByteToMessageDecoder {
         this.maxContentLength = maxContentLength;
     }
 
+    /**
+     * 解码有扩展
+     * @param ctx
+     * @param in
+     * @param out
+     * @throws Exception
+     */
     @Override
     protected void decode(ChannelHandlerContext ctx, ByteBuf in, List<Object> out) throws Exception {
         if (in.readableBytes() <= MotanConstants.NETTY_HEADER) {
